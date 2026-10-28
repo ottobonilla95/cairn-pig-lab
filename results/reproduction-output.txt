@@ -1,0 +1,3 @@
+Tournament: 10000 games, each strategy starts 5000 times.
+hold_at_twenty: 6983 wins (69.8%)
+hold_at_ten: 3017 wins (30.2%)

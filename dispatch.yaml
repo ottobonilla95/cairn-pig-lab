@@ -1,0 +1,42 @@
+# The dispatcher connects to this Cairn server (we will start it later).
+server: http://127.0.0.1:8001
+
+runtime:
+  execution: local              # Run the installed agent CLI on this Mac.
+  worker_healthcheck: disabled  # Use the CLI's existing login and configuration.
+  max_workers: 2               # At most two tasks running at once.
+  max_running_projects: 1
+  max_project_workers: 2
+  interval: 3                  # Check the shared board every 3 seconds.
+  healthcheck_timeout: 15
+  prompt_group: default
+
+# Time limits are in seconds. Reason assesses progress; explore tests an idea.
+tasks:
+  bootstrap:
+    timeout: 180
+    conclude_timeout: 60
+  reason:
+    timeout: 180
+    max_intents: 2
+  explore:
+    timeout: 600
+    conclude_timeout: 120
+
+local:
+  workspace_root: /Users/otto/Local/study/cairn-lab/workspaces
+  completed_action: keep       # Keep each project's files after completion.
+
+# Both workers can perform the same task types. Neither is a permanent boss.
+workers:
+  - name: worker-a
+    type: codex
+    task_types: [bootstrap, reason, explore]
+    max_running: 1
+    priority: 0
+
+  - name: worker-b
+    type: codex
+    task_types: [bootstrap, reason, explore]
+    max_running: 1
+    priority: 0

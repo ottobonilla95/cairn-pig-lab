@@ -1,0 +1,22 @@
+{
+  "source": "Independent reproduction of the command recorded in Cairn fact f001",
+  "date": "2026-10-28",
+  "project_id": "proj_001",
+  "candidate": "hold_at_twenty",
+  "baseline": "hold_at_ten",
+  "games": 10000,
+  "starts_per_strategy": 5000,
+  "seed": 20261028,
+  "candidate_wins": 6983,
+  "baseline_wins": 3017,
+  "candidate_win_rate": 0.6983,
+  "target_win_rate": 0.55,
+  "goal_met": true,
+  "pig_py_sha256": "eb908517cf1c6f7ebb5ff1cc5ee2d81f74d942b44cfad5fb33d5a7946c6f9120",
+  "command": "python3 -B -c 'import random; from pig import hold_at_twenty, hold_at_ten, run_tournament; random.seed(20261028); wins = run_tournament(hold_at_twenty, hold_at_ten, games=10000); assert wins[0] >= 5500'",
+  "limitations": [
+    "The strategy already existed in pig.py; it was tested rather than discovered by Cairn.",
+    "One worker completed the bootstrap task; multi-worker coordination was not demonstrated.",
+    "One seeded tournament against a weak fixed opponent does not establish optimal play."
+  ]
+}
